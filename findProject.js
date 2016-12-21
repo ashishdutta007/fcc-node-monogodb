@@ -7,14 +7,25 @@ mongo.connect(url, function(error, db) {
 		console.log("An error occurred", error);
 	}
 	else {
+		//returns db objects
 		var parrots = db.collection('parrots');
 		parrots.find({
 			age: {
 				$gt: arg
 			}
-		}).toArray(function() {
-
+		}, {
+			name: 1,
+			age: 1,
+			_id: 0
+		}).toArray(function(error, docs) {
+			if (error) {
+				console.log("An error occured", error);
+			}
+			else {
+				//find query results
+				console.log(docs);
+			}
 		});
-
 	}
+	db.close();
 });
