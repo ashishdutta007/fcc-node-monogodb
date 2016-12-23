@@ -5,9 +5,11 @@ var arg = Number(process.argv[2]);
 
 //Using MongoClient to make a connection
 mongo.MongoClient.connect(url, function(error, db) {
+	//handle error
 	if (error) {
 		console.log("An error occured", error);
 	}
+	//on making successful connection
 	else {
 		//returns db object ,to collection parrots 
 		var parrots = db.collection('parrots');
